@@ -50,7 +50,8 @@ taskRoutes.put('/:id', (req, res) => {
     let writePath = path.join(__dirname, '..', 'tasksInfo.json');
     let taskDataModified = JSON.parse(JSON.stringify(taskData));
 
-    if (validator.validateTaskEditInfo(taskDetails, taskData).status) {
+    let validationResponse = validator.validateTaskEditInfo(taskDetails, taskData);
+    if (validationResponse.status) {
         for (let i = 0; i < taskDataModified.tasks.length - 1; i++) {
             if (taskDataModified.tasks[i].taskId == taskEditId) {
                 if (taskDetails.hasOwnProperty('title')) {
@@ -67,7 +68,7 @@ taskRoutes.put('/:id', (req, res) => {
         try {
             fs.writeFileSync(writePath, JSON.stringify(taskDataModified), { encoding: 'utf-8', flag: 'w' });
             res.status(200)
-            res.json(validator.validateTaskInfo(taskDetails, taskData));
+            res.json(validationResponse);
             return res;
         }
         catch (err) {
@@ -75,7 +76,7 @@ taskRoutes.put('/:id', (req, res) => {
         }
     }
     else {
-        return res.status(400).json(validator.validateTaskInfo(taskDetails, taskData));
+        return res.status(400).json(validationResponse);
     }
 });
 

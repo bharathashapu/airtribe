@@ -1,5 +1,5 @@
 class validator {
-    static validateTaskInfo(taskInfo, taskData) {
+    static validateTaskInfo(taskInfo) {
         if (taskInfo.hasOwnProperty('title') &&
         taskInfo.hasOwnProperty('description') &&
         taskInfo.hasOwnProperty('completionStatus') && typeof taskInfo.completionStatus === "boolean")  {
@@ -18,11 +18,11 @@ class validator {
 
         return {
             "status": false,
-            "message": "Task Info is malformed, please provide all the properties"
+            "message": "Task Info is malformed, please provide all (title, description and completionStatus) the properties"
         };
     }
 
-    static validateTaskEditInfo(taskInfo, taskData) {
+    static validateTaskEditInfo(taskInfo) {
         if (taskInfo.hasOwnProperty('title') ||
         taskInfo.hasOwnProperty('description') ||
         (taskInfo.hasOwnProperty('completionStatus') && (typeof taskInfo.completionStatus === "boolean")))  {
@@ -40,7 +40,7 @@ class validator {
 
         return {
             "status": false,
-            "message": "Task Info is malformed, please provide correct properties"
+            "message": "Task Info is malformed, please provide one of the properies to update the task title, description and completion status"
         };
     }
 }

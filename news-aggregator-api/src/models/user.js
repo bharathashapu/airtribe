@@ -34,11 +34,11 @@ var userSchema = new Schema({
    preferences: {
     category: {
         type: [String],
-        required: false
+        required: [true, "Atleast one category is mandatory"]
     },
     sources: {
         type: [String],
-        required: false
+        required: [true, "Atleast one sources is mandatory"]
     }
    },
    created: {

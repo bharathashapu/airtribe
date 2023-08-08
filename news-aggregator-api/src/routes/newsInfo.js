@@ -22,11 +22,22 @@ news.get('/', verifyToken, async (req, res) => {
     });
   }
 
-  const searchParams = new URLSearchParams({q: req.user.preferences.category, source: req.user.preferences.sources, apiKey: process.env.NEWS_API_KEY});
+  const searchParams = new URLSearchParams();
+
+  if (req.user.preferences.category) {
+    for (category of req.user.preferences.category) {
+      searchParams.append('category', category)
+    }
+  }
+  else {
+    searchParams.append('category', 'general');
+  }
+
+  searchParams.append('apiKey', process.env.NEWS_API_KEY);
 
   try {
     let resp = await newsApi(`${url}?${searchParams}`);
-      res.status(200).json(resp);
+      res.status(200).json(resp.articles);
     } catch (err) {
       res.status(500).json({ error: err });
     }

@@ -7,6 +7,7 @@ Schema = mangoose.Schema;
  * password,
  * preferences,
  * created,
+ * updated
  * */ 
 var userSchema = new Schema({
    fullName: {
@@ -41,6 +42,10 @@ var userSchema = new Schema({
     }
    },
    created: {
+    type: Date,
+    default: Date.now
+   },
+   updated: {
     type: Date,
     default: Date.now
    }

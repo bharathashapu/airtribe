@@ -30,8 +30,40 @@ preferenceRoutes.put('/', verifyToken, (req, res) => {
             message: 'Invalid Token'
         });
     }
-    return res.status(200).json(req.user);
-    //todo
+
+    let pbData = req.body.preferences;
+    if (pbData) {
+        let prefData = new Object;
+        let category = (pbData.category && Array.isArray(pbData.category)) ? pbData.category : '';
+        let sources = (pbData.sources && Array.isArray(pbData.sources)) ? pbData.sources : '';
+        if (category) {
+            prefData.category = category;
+        }
+        if (sources) {
+            prefData.sources = sources;
+        }
+        if (prefData) {
+            User.findByIdAndUpdate(req.user._id, {
+                preferences: prefData
+            }).then(data => {
+                return res.status(200).send('Preferences Updated Successfully');
+            }).catch(err => {
+                return res.status(500).send({
+                    error: err,
+                    message: 'Update Failed'
+                });
+            })
+        }
+        else {
+            return res.status(400).send('Invalid Format');
+        }
+    }
+    else {
+        return res.status(400).send({
+            message: 'Invalid Data'
+        });
+    }
+    
 })
 
 module.exports = preferenceRoutes;

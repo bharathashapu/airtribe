@@ -4,9 +4,20 @@ const routes = require("express").Router();
 const {signin, signup} = require('./controller/authController');
 const preferenceRoutes = require("./routes/preferences");
 const news = require("./routes/newsInfo");
+const mongoose = require('mongoose');
 require("dotenv").config();
 
 const app = express();
+
+try {
+    mongoose.connect("mongodb://localhost:27017/newsdb", {
+        useUnifiedTopology: true,
+        useNewUrlParser: true
+    });
+    console.log('DB Connected')
+} catch (err) {
+    console.log(err);
+}
 
 app.use(routes);
 app.use(bodyParser.urlencoded({ extended: false}));

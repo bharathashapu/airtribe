@@ -8,7 +8,7 @@ require("dotenv").config();
 news.use(bodyParser.urlencoded({ extended: false }));
 news.use(bodyParser.json());
 
-let url = 'https://newsapi.org/v2/top-highlights';
+let url = 'https://newsapi.org/v2/top-headlines';
 
 news.get('/', verifyToken, async (req, res) => {
   if (!req.user && req.message) {

@@ -1,20 +1,9 @@
 const preferenceRoutes = require('express').Router();
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const verifyToken = require('../middleware/verifyToken');
 const User = require('../models/user');
 
 preferenceRoutes.use(bodyParser.json());
-
-try {
-    mongoose.connect("mongodb://localhost:27017/newsdb", {
-        useUnifiedTopology: true,
-        useNewUrlParser: true
-    });
-    console.log('DB Connected')
-} catch (err) {
-    console.log(err);
-}
 
 preferenceRoutes.get('/', verifyToken, (req, res) => {
     if (!req.user && req.message) {

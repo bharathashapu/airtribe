@@ -1,6 +1,7 @@
 var jwt = require("jsonwebtoken");
 var bcrypt = require('bcrypt');
 var User = require('../models/user');
+const { TOKEN_EXPIRY } = require("../lib/constants");
 
 var signup = (req, res) => {
     let fullName = req.body.fullName;
@@ -39,7 +40,7 @@ var signin = (req, res) => {
         var token = jwt.sign({
             id: user.id,
         }, process.env.API_SECRET, {
-            expiresIn: 86400
+            expiresIn: TOKEN_EXPIRY
         });
 
         return res.status(200).send({

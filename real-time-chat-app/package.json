@@ -1,0 +1,14 @@
+{
+  "name": "real-time-chat-app",
+  "version": "1.0.0",
+  "description": "Real time chat application using nodejs web sockets",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bharath Ashapu",
+  "license": "ISC",
+  "dependencies": {
+    "sockets": "^0.4.2"
+  }
+}

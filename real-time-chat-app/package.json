@@ -9,6 +9,8 @@
   "author": "Bharath Ashapu",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
     "sockets": "^0.4.2"
   },
   "devDependencies": {

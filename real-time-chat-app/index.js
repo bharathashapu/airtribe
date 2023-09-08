@@ -1,20 +1,19 @@
-const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
-const formatMessage = require('./utils/datetime.util');
+const formatMessage = require('./utils/datetime.js');
 const {
 	getActiveUser,
 	exitRoom,
 	newUser,
 	getIndividualRoomUsers,
-} = require('./utils/users.util');
+} = require('./utils/users.js');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-app.use(express.static(path.join(__dirname, '..', 'client')));
+app.use(express.static('public'));
 
 io.on('connection', (socket) => {
 	socket.on('joinRoom', ({ username, room }) => {
@@ -63,6 +62,6 @@ io.on('connection', (socket) => {
 	});
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -1,3 +1,4 @@
+-- Active: 1684817559178@@127.0.0.1@3306@bms
 CREATE DATABASE dms;
 
 USE bms;
@@ -30,7 +31,7 @@ INSERT INTO movie(id, name, description, languages, genre, releaseDate, duration
 INSERT INTO movie(id, name, description, languages, genre, releaseDate, duration, certificate) VALUES (2, 'The Nun II', 'The sequel to the worldwide smash hit follows Sister Irene as she once again comes face-to-face with Valak, the demon nun', 'English, Hindi, Telugu, Tamil', 'Horror, Mystery, Thriller', '2023-09-07', 111, 'A');
 INSERT INTO movie(id, name, description, languages, genre, releaseDate, duration, certificate) VALUES (3, 'Gadar II', 'Gadar 2 brings back India\'s most loved family of Tara, Sakeena and Jeete; 22 years after its predecessor. Set against the backdrop of Indo-Pakistan war 1971, Tara Singh, oce again, will face every enemey to protect the honor of country and family', 'Hindi', 'Action, Drama, Period', '2023-08-11', 170, 'U/A');
 
-INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (1, '2023-09-07', '11:15:00', 60, 'IMAX', 'Telugu' '2D', 1, 1, 1);
+INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (1, '2023-09-07', '11:15:00', 60, 'IMAX', 'Telugu', '2D', 1, 1, 1);
 INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (2, '2023-09-07', '15:45:00', 60, 'DOLBY 5.1', 'Hindi', '2D', 2, 1, 2);
 INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (3, '2023-09-07', '22:10:00', 60, 'RDX SOUND', 'Hindi', '2D', 3, 1, 3);
 INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (4, '2023-09-08', '11:00:00', 120, 'ICE', 'Hindi', '2D', 1, 2, 1);
@@ -41,4 +42,17 @@ INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallN
 INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (9, '2023-09-09', '13:15:00', 150, '4K PROJECTION', 'English', '2D', 2, 3, 2);
 INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (10, '2023-09-09', '16:40:00', 150, 'DOLBY ATMOS', 'Hindi', '2D', 3, 3, 3);
 INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (11, '2023-09-09', '20:30:00', 150, 'DOLBY 8.1', 'Tamil', '2D', 4, 3, 1);
+
+#Testing DATA in TABLESPACE
+
+SELECT * FROM movie;
+SELECT * FROM theatre;
+SELECT * FROM shows;
+
+# P2 - Write a query to list down all the shows on a given date at a given theatre along with their respective show timings. 
+
+SELECT theatre.name AS theatre, movie.name AS movie, shows.date AS date, shows.time AS time, shows.language AS language FROM shows
+JOIN movie ON movie.id = shows.movieID
+JOIN theatre ON theatre.id = shows.theatreID
+WHERE shows.date = '2023-09-08' AND shows.theatreID = 2;
 

@@ -1,5 +1,4 @@
--- Active: 1684817559178@@127.0.0.1@3306@bms
-CREATE DATABASE dms;
+CREATE DATABASE bms;
 
 USE bms;
 

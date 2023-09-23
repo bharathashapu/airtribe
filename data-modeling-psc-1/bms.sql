@@ -6,13 +6,10 @@ USE bms;
 # Bookmyshow is a ticketing platform where you can book tickets for a movie show. The image attached represents that for a given theatre we can see the next 7 dates. As one chooses the date, we get list of all shows running in that theatre along with the show timings.
 # P1 - As part of this assignment, we need to list down all the entities, their attributes and the table structures for the scenario mentioned in the previous slide. You also need to write the SQL queries required to create these tables along with few sample entries. Ensure the tables follow 1NF, 2NF, 3NF and BCNF rules.
 
-DROP TABLE IF EXISTS theatre;
 CREATE TABLE theatre(id BIGINT NOT NULL, name VARCHAR(100), totalHalls INT, city VARCHAR(50), PRIMARY KEY (id));
 
-DROP TABLE IF EXISTS movie;
 CREATE TABLE movie(id BIGINT NOT NULL, name VARCHAR(100) NOT NULL, description VARCHAR(250), languages VARCHAR(50), genre VARCHAR(30), releaseDate DATE, duration INT, certificate VARCHAR(5), PRIMARY KEY(id));
 
-DROP TABLE IF EXISTS shows;
 CREATE TABLE shows(id BIGINT NOT NULL, date DATE NOT NULL, time TIME NOT NULL, totalSeats INT, format VARCHAR(50), language VARCHAR(30), dimension VARCHAR(10), hallNumber INT, theatreID BIGINT, movieID BIGINT,
 PRIMARY KEY (id), FOREIGN KEY (theatreID) REFERENCES theatre(id), FOREIGN KEY (movieID) REFERENCES movie(id));
 

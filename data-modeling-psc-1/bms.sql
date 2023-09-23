@@ -43,7 +43,7 @@ INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallN
 INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (10, '2023-09-09', '16:40:00', 150, 'DOLBY ATMOS', 'Hindi', '2D', 3, 3, 3);
 INSERT INTO shows(id, date, time, totalSeats, format, language, dimension, hallNumber, theatreID, movieID) VALUES (11, '2023-09-09', '20:30:00', 150, 'DOLBY 8.1', 'Tamil', '2D', 4, 3, 1);
 
-#Testing DATA in TABLESPACE
+#Testing DATA in TABLES
 
 SELECT * FROM movie;
 SELECT * FROM theatre;

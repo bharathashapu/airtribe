@@ -1,0 +1,10 @@
+{
+    "development": {
+      "username": "user_name",
+      "password": "password_sample",
+      "database": "bms_dev",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    }
+  }
+  

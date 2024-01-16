@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require("./models");
+const db = require('./models');
 const mysql2 = require('mysql2');
 const { PORT } = require('./config/envConstants');
 const {Movie, Show, Theatre} = require('./models');
@@ -27,12 +27,12 @@ app.get('/', (req, res) => {
 		console.log(err);
 		return res.status(500).json({ message: 'Something went wrong' });
 	}
-})
+});
 
 db.sequelize.sync().then((req) => {
-    app.listen(PORT, () => {
-        console.log('Server is running on port '+PORT);
-    }); 
+	app.listen(PORT, () => {
+		console.log('Server is running on port '+PORT);
+	}); 
 }).catch((err) => {
-    console.log(err);
+	console.log(err);
 });
